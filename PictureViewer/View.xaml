@@ -14,21 +14,21 @@
     </Window.DataContext>
     <Grid RenderTransformOrigin="0.231,-0.163">
         <ListView
-            Width="500"
+            Width="370"
             Height="362"
             Margin="0,47,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             IsSynchronizedWithCurrentItem="True"
-            ItemsSource="{Binding Images}">
+            ItemsSource="{Binding Images}"
+            SelectedIndex="{Binding Get_selected}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
-                        Width=" 170"
+                        Width=" 100"
                         DisplayMemberBinding="{Binding Name}"
                         Header="Название файла" />
-
-                    <GridViewColumn Width=" 200" Header="Изображение">
+                    <GridViewColumn Width=" 160" Header="Изображение">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Image
@@ -39,19 +39,44 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn
-                        Width="130"
+                        Width="110"
                         DisplayMemberBinding="{Binding Size}"
                         Header="Размер файла,КБ" />
                 </GridView>
             </ListView.View>
         </ListView>
         <Button
-            Width="75"
-            Margin="574,47,0,0"
+            Width="128"
+            Margin="10,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Command="{Binding Get_images}"
+            Content="Открыть папку"
+            RenderTransformOrigin="-5.6,-0.35" />
+        <Image
+            Width="393"
+            Height="362"
+            Margin="389,47,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Source="{Binding Big_picture}" />
+        <Button
+            Width="75"
+            Margin="172,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding Get_big_image}"
             Content="Button" />
+        <TextBox
+            Width="393"
+            Height="42"
+            Margin="389,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="{Binding Big_picture}"
+            TextWrapping="Wrap" />
+
+
 
     </Grid>
 </Window>

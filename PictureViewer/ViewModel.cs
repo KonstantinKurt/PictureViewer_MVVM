@@ -16,6 +16,29 @@ namespace PictureViewer
     class ViewModel : ViewModelBase
     {
         List<string> filter = new List<string>() { @"bmp", @"jpg", @"gif", @"png", @"ico", @"jpeg" };
+        //public Image Big_picture
+        //{
+        //    get;
+        //    set;
+        //}
+        string _big_picture;
+        public string Big_picture
+        {
+            get
+            {
+                return _big_picture;
+            }
+            set
+            {
+                _big_picture = value;
+                RaisePropertyChanged(() => Big_picture);
+            }
+        }
+        public int Get_selected
+        {
+            get;
+            set;
+        }
         public ObservableCollection<Picture> Images
         {
             get;
@@ -29,6 +52,17 @@ namespace PictureViewer
         
         #region Commands
         ICommand _get_images;
+        ICommand _get_big_image;
+        public ICommand Get_big_image
+        {
+            get
+            {
+                return _get_big_image ?? (_get_big_image = new RelayCommand(() =>
+                {
+                   Big_picture = Images[Get_selected].Path_to_Pic;
+                }));
+            }
+        }
         public ICommand Get_images
         {
             get
@@ -62,5 +96,14 @@ namespace PictureViewer
                    
             }
         }
+        //public void Get_big_picture()
+        //{
+        //    string temp_path = Images[Get_selected].Path_to_Pic;
+        //    Big_picture = new Image();
+        //    Big_picture.Source = new BitmapImage(new Uri(temp_path));
+
+        //}
+       
+
     }
 }

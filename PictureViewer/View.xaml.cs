@@ -24,5 +24,7 @@ namespace PictureViewer
         {
             InitializeComponent();
         }
+
+        
     }
 }
