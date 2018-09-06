@@ -14,6 +14,10 @@
         <local:ViewModel />
     </Window.DataContext>
     <Grid RenderTransformOrigin="0.231,-0.163">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="41*"/>
+        </Grid.ColumnDefinitions>
         <ListView
             Width="370"
             Height="362"
@@ -22,7 +26,8 @@
             VerticalAlignment="Top"
             IsSynchronizedWithCurrentItem="True"
             ItemsSource="{Binding Images}"
-            SelectedIndex="{Binding Get_selected}">
+            SelectedIndex="{Binding Get_selected}"
+            SelectedItem="{Binding Get_selected}" Grid.ColumnSpan="2">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding Path=Get_big_image}" />
@@ -58,23 +63,39 @@
             VerticalAlignment="Top"
             Command="{Binding Get_images}"
             Content="Открыть папку"
-            RenderTransformOrigin="-5.6,-0.35" />
+            RenderTransformOrigin="-5.6,-0.35" BorderBrush="#FF073391" />
         <Image
             Width="393"
             Height="362"
-            Margin="389,47,0,0"
+            Margin="48,47,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Source="{Binding Big_picture}" />
+            Source="{Binding Big_picture}" Grid.Column="1" />
         <TextBox
             Width="393"
             MinHeight="20"
             MaxHeight="42"
-            Margin="389,0,0,0"
+            Margin="48,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="{Binding Big_picture}"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Grid.Column="1" />
+
+        <Button
+            Width="75"
+            Margin="152,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding Next}"
+            Content="Следующее" BorderBrush="#FF60EC2C" />
+        <Button
+            Width="75"
+            Margin="243,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding Prev}"
+            Content="Предидущее"
+            RenderTransformOrigin="0.627,-3.95" BorderBrush="#FF6AF137" />
 
 
 
