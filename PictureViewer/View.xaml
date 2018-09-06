@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:PictureViewer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
@@ -22,6 +23,11 @@
             IsSynchronizedWithCurrentItem="True"
             ItemsSource="{Binding Images}"
             SelectedIndex="{Binding Get_selected}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding Path=Get_big_image}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -60,16 +66,10 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Source="{Binding Big_picture}" />
-        <Button
-            Width="75"
-            Margin="172,10,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Command="{Binding Get_big_image}"
-            Content="Button" />
         <TextBox
             Width="393"
-            Height="42"
+            MinHeight="20"
+            MaxHeight="42"
             Margin="389,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
