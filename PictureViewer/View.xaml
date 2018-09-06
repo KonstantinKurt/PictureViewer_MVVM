@@ -15,10 +15,11 @@
     </Window.DataContext>
     <Grid RenderTransformOrigin="0.231,-0.163">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="31*"/>
-            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="31*" />
+            <ColumnDefinition Width="41*" />
         </Grid.ColumnDefinitions>
         <ListView
+            Grid.ColumnSpan="2"
             Width="370"
             Height="362"
             Margin="0,47,0,0"
@@ -27,7 +28,8 @@
             IsSynchronizedWithCurrentItem="True"
             ItemsSource="{Binding Images}"
             SelectedIndex="{Binding Get_selected}"
-            SelectedItem="{Binding Get_selected}" Grid.ColumnSpan="2">
+            SelectedItem="{Binding Get_selected}"
+            ToolTip="Двойной клик - открыть картинку">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding Path=Get_big_image}" />
@@ -58,20 +60,23 @@
         </ListView>
         <Button
             Width="128"
-            Margin="10,10,0,0"
+            Margin="10,15,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            BorderBrush="#FF073391"
             Command="{Binding Get_images}"
             Content="Открыть папку"
-            RenderTransformOrigin="-5.6,-0.35" BorderBrush="#FF073391" />
+            RenderTransformOrigin="-5.6,-0.35" />
         <Image
+            Grid.Column="1"
             Width="393"
             Height="362"
             Margin="48,47,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Source="{Binding Big_picture}" Grid.Column="1" />
+            Source="{Binding Big_picture}" />
         <TextBox
+            Grid.Column="1"
             Width="393"
             MinHeight="20"
             MaxHeight="42"
@@ -79,23 +84,34 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="{Binding Big_picture}"
-            TextWrapping="Wrap" Grid.Column="1" />
-
+            TextWrapping="Wrap"
+            ToolTip="Адрес картинки" />
         <Button
             Width="75"
-            Margin="152,10,0,0"
+            Margin="143,15,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            BorderBrush="#FF60EC2C"
             Command="{Binding Next}"
-            Content="Следующее" BorderBrush="#FF60EC2C" />
+            Content="Следующее" />
         <Button
             Width="75"
-            Margin="243,10,0,0"
+            Margin="223,15,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            BorderBrush="#FF6AF137"
             Command="{Binding Prev}"
             Content="Предидущее"
-            RenderTransformOrigin="0.627,-3.95" BorderBrush="#FF6AF137" />
+            RenderTransformOrigin="0.627,-3.95" />
+        <Button
+            Grid.ColumnSpan="2"
+            Width="67"
+            Margin="303,15,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            BorderBrush="#FFFB0505"
+            Command="{Binding Slide_show}"
+            Content="Слайд" />
 
 
 

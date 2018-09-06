@@ -11,12 +11,14 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+
 using System.Windows.Controls;
 namespace PictureViewer
 {
     class ViewModel : ViewModelBase
     {
         List<string> filter = new List<string>() { @"bmp", @"jpg", @"gif", @"png", @"ico", @"jpeg" };
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         string _big_picture;
         int _get_selected;
         public string Big_picture
@@ -51,7 +53,8 @@ namespace PictureViewer
         public ViewModel()
         {
             Images = new ObservableCollection<Picture>();
-            
+            timer.Interval = 1000;
+            timer.Tick += new EventHandler(timer_Tick);
         }
         
         #region Commands
@@ -102,22 +105,16 @@ namespace PictureViewer
                 }));
             }
         }
-        //public ICommand Slide_show
-        //{
-        //    get
-        //    {
-        //        return _slide_show ?? (_slide_show = new RelayCommand(() =>
-        //        {
-        //            do
-        //            {
-        //                Big_picture = Images[start].Path_to_Pic;
-        //                Thread.Sleep(1000);
-        //                start++;
-        //            }
-        //            while (start < Images.Count);
-        //        }));
-        //    }
-        //}
+        public ICommand Slide_show
+        {
+            get
+            {
+                return _slide_show ?? (_slide_show = new RelayCommand(() =>
+                {
+                    timer.Start();
+                }));
+            }
+        }
 
         public ICommand Get_big_image
         {
@@ -162,8 +159,21 @@ namespace PictureViewer
                    
             }
         }
-        
-       
+        void timer_Tick(object sender, EventArgs e)
+        {
+            int temp = Images.Count - 1;
+            
+            if (Get_selected == temp)
+            {
+                timer.Stop();
+                //Get_selected = 0;
+                //Big_picture = Images[Get_selected].Path_to_Pic;
+            }
+            Big_picture = Images[Get_selected].Path_to_Pic;
+            Get_selected += 1;
+            
+        }
+
 
     }
 }
