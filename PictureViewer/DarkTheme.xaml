@@ -20,4 +20,9 @@
         <Setter Property="Foreground" Value="White" />
         <Setter Property="BorderBrush" Value="Black" />
     </Style>
+    <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+        <Setter Property="Background" Value="#FF146C06" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="Black" />
+    </Style>
 </ResourceDictionary>

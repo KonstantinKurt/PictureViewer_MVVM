@@ -133,13 +133,35 @@
         <Button
             Grid.Column="1"
             Width="75"
-            Margin="113,23,0,0"
+            Margin="107,25,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Command="{Binding Dark_theme}"
             Content="Dark"
             RenderTransformOrigin="0.373,-0.211"
             Style="{DynamicResource ButtonStyle}" />
+        <ComboBox
+            Grid.Column="1"
+            Width="120"
+            Margin="271,25,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Style="{DynamicResource ComboBoxStyle}">
+            <ComboBoxItem IsSelected="True">
+                <Button
+                    Width="108"
+                    Command="{Binding Dark_theme}"
+                    Content="Dark"
+                    Style="{DynamicResource ButtonStyle}" />
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <Button
+                    Width="108"
+                    Command="{Binding Light_theme}"
+                    Content="Light"
+                    Style="{DynamicResource ButtonStyle}" />
+            </ComboBoxItem>
+        </ComboBox>
 
 
 
