@@ -11,9 +11,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
 namespace PictureViewer
 {
     class ViewModel : ViewModelBase
@@ -57,7 +56,7 @@ namespace PictureViewer
             timer.Interval = 1000;
             timer.Tick += new EventHandler(timer_Tick);
         }
-        
+
         #region Commands
         ICommand _get_images;
         ICommand _get_big_image;
@@ -113,7 +112,7 @@ namespace PictureViewer
                         Get_selected += 1;
                         Big_picture = Images[Get_selected].Path_to_Pic;
                     }
-                    else 
+                    else
                     {
                         Get_selected = 0;
                         Big_picture = Images[Get_selected].Path_to_Pic;
@@ -139,7 +138,7 @@ namespace PictureViewer
             {
                 return _get_big_image ?? (_get_big_image = new RelayCommand(() =>
                 {
-                   Big_picture = Images[Get_selected].Path_to_Pic;
+                    Big_picture = Images[Get_selected].Path_to_Pic;
                 }));
             }
         }
@@ -165,7 +164,7 @@ namespace PictureViewer
                         try
                         {
                             var fileinfo = new FileInfo(file);
-                            Images.Add(new Picture {Name = fileinfo.Name, Path_to_Pic = fileinfo.FullName,Size =fileinfo.Length/1000});
+                            Images.Add(new Picture { Name = fileinfo.Name, Path_to_Pic = fileinfo.FullName, Size = fileinfo.Length / 1000 });
                         }
                         catch (Exception ex)
                         {
@@ -173,11 +172,36 @@ namespace PictureViewer
                         }
                     }
                 }
-                   
+
             }
         }
-        
-       
+        void timer_Tick(object sender, EventArgs e)
+        {
+            int temp = Images.Count - 1;
 
+            if (Get_selected == temp)
+            {
+                timer.Stop();
+                //Get_selected = 0;
+                //Big_picture = Images[Get_selected].Path_to_Pic;
+            }
+            Big_picture = Images[Get_selected].Path_to_Pic;
+            Get_selected += 1;
+
+        }
+        void light_theme()
+        {
+            var uri = new Uri("LightTheme.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = System.Windows.Application.LoadComponent(uri) as ResourceDictionary;
+            System.Windows.Application.Current.Resources.Clear();
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+        }
+        void dark_theme()
+        {
+            var uri = new Uri("DarkTheme.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = System.Windows.Application.LoadComponent(uri) as ResourceDictionary;
+            System.Windows.Application.Current.Resources.Clear();
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+        }
     }
 }
