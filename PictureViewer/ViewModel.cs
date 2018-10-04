@@ -11,8 +11,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-
 using System.Windows.Controls;
+using System.Windows;
 namespace PictureViewer
 {
     class ViewModel : ViewModelBase
@@ -63,6 +63,22 @@ namespace PictureViewer
         ICommand _slide_show;
         ICommand _next;
         ICommand _prev;
+        ICommand _light_theme;
+        ICommand _dark_theme;
+        public ICommand Light_theme
+        {
+            get
+            {
+                return _light_theme ?? (_light_theme = new RelayCommand(light_theme));
+            }
+        }
+        public ICommand Dark_theme
+        {
+            get
+            {
+                return _dark_theme ?? (_dark_theme = new RelayCommand(dark_theme));
+            }
+        }
         public ICommand Prev
         {
             get
@@ -152,7 +168,7 @@ namespace PictureViewer
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message);
+                            System.Windows.MessageBox.Show(ex.Message);
                         }
                     }
                 }
@@ -173,7 +189,19 @@ namespace PictureViewer
             Get_selected += 1;
             
         }
-
-
+        void light_theme()
+        {
+            var uri = new Uri("LightTheme.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = System.Windows.Application.LoadComponent(uri) as ResourceDictionary;
+            System.Windows.Application.Current.Resources.Clear();
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+        }
+        void dark_theme()
+        {
+            var uri = new Uri("DarkTheme.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = System.Windows.Application.LoadComponent(uri) as ResourceDictionary;
+            System.Windows.Application.Current.Resources.Clear();
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+        }
     }
 }
