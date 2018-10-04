@@ -11,6 +11,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+
 using System.Windows.Controls;
 using System.Windows;
 namespace PictureViewer
@@ -175,33 +176,8 @@ namespace PictureViewer
                    
             }
         }
-        void timer_Tick(object sender, EventArgs e)
-        {
-            int temp = Images.Count - 1;
-            
-            if (Get_selected == temp)
-            {
-                timer.Stop();
-                //Get_selected = 0;
-                //Big_picture = Images[Get_selected].Path_to_Pic;
-            }
-            Big_picture = Images[Get_selected].Path_to_Pic;
-            Get_selected += 1;
-            
-        }
-        void light_theme()
-        {
-            var uri = new Uri("LightTheme.xaml", UriKind.Relative);
-            ResourceDictionary resourceDict = System.Windows.Application.LoadComponent(uri) as ResourceDictionary;
-            System.Windows.Application.Current.Resources.Clear();
-            System.Windows.Application.Current.Resources.MergedDictionaries.Add(resourceDict);
-        }
-        void dark_theme()
-        {
-            var uri = new Uri("DarkTheme.xaml", UriKind.Relative);
-            ResourceDictionary resourceDict = System.Windows.Application.LoadComponent(uri) as ResourceDictionary;
-            System.Windows.Application.Current.Resources.Clear();
-            System.Windows.Application.Current.Resources.MergedDictionaries.Add(resourceDict);
-        }
+        
+       
+
     }
 }

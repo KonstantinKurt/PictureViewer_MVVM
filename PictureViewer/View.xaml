@@ -17,10 +17,11 @@
     </Window.DataContext>
     <Grid RenderTransformOrigin="0.231,-0.163">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="127*" />
-            <ColumnDefinition Width="137*" />
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="41*"/>
         </Grid.ColumnDefinitions>
         <ListView
+            Grid.ColumnSpan="2"
             Width="370"
             Height="362"
             Margin="0,47,0,0"
@@ -29,9 +30,7 @@
             IsSynchronizedWithCurrentItem="True"
             ItemsSource="{Binding Images}"
             SelectedIndex="{Binding Get_selected}"
-            SelectedItem="{Binding Get_selected}"
-            Style="{DynamicResource ListViewStyle}"
-            ToolTip="Двойной клик - открыть картинку">
+            SelectedItem="{Binding Get_selected}" Grid.ColumnSpan="2">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding Path=Get_big_image}" />
@@ -62,21 +61,20 @@
         </ListView>
         <Button
             Width="128"
-            Height="20"
-            Margin="10,15,0,0"
+            Margin="10,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            BorderBrush="#FF073391"
             Command="{Binding Get_images}"
             Content="Открыть папку"
-            RenderTransformOrigin="-5.6,-0.35"
-            Style="{DynamicResource ButtonStyle}" />
+            RenderTransformOrigin="-5.6,-0.35" BorderBrush="#FF073391" />
         <Image
-            Grid.Column="1"
-            Height="357"
-            Margin="18,52,10,0"
+            Width="393"
+            Height="362"
+            Margin="48,47,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            RenderTransformOrigin="0.295,0.428"
-            Source="{Binding Big_picture}" />
+            Source="{Binding Big_picture}" Grid.Column="1" />
         <TextBox
             Grid.Column="1"
             Width="393"
@@ -93,56 +91,21 @@
             ToolTip="Адрес картинки" />
         <Button
             Width="75"
-            Height="20"
-            Margin="143,15,0,0"
+            Margin="152,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            BorderBrush="#FF60EC2C"
             Command="{Binding Next}"
-            Content="Следующее"
-            Style="{DynamicResource ButtonStyle}" />
+            Content="Следующее" BorderBrush="#FF60EC2C" />
         <Button
             Width="75"
-            Height="20"
-            Margin="223,15,0,0"
+            Margin="243,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            BorderBrush="#FF6AF137"
             Command="{Binding Prev}"
             Content="Предидущее"
-            RenderTransformOrigin="0.627,-3.95"
-            Style="{DynamicResource ButtonStyle}" />
-        <Button
-            Width="67"
-            Height="20"
-            Margin="303,15,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Command="{Binding Slide_show}"
-            Content="Слайд"
-            Style="{DynamicResource ButtonStyle}" />
-        <ComboBox
-            Grid.Column="1"
-            Width="65"
-            Margin="336,26,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
-        <Button
-            Grid.Column="1"
-            Width="106"
-            Margin="18,33,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Command="{Binding Light_theme}"
-            Content="Light"
-            Style="{DynamicResource ButtonStyle}" />
-        <Button
-            Grid.Column="1"
-            Width="106"
-            Margin="153,33,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Command="{Binding Dark_theme}"
-            Content="Dark"
-            Style="{DynamicResource ButtonStyle}" />
+            RenderTransformOrigin="0.627,-3.95" BorderBrush="#FF6AF137" />
 
 
 
